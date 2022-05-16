@@ -1,36 +1,46 @@
 package dev.rocco;
+import java.util.Scanner;
 
 public class WordScrambler {
-
+    static Scanner input = new Scanner(System.in);
     private String[] scrambledWords;
-
-    /**
-     * @param wordArr an array of String objects
-     *                Precondiion: wordArr . length is even
-     */
 
     public WordScrambler(String[] wordArr) {
         scrambledWords = mixedWords(wordArr);
     }
 
-    /**
-     * @param wordl a String of characters
-     * @param word2 a String of characters
-     * @return a String that contains the first half of wordl and the second half of we
-     */
-    private String recombine(String wordl, String word2) {
+    public static void main(String[] args) {
+        System.out.println("Enter the first even length word.");
+        String word1 = input.nextLine();
+        System.out.println("Enter the second even length word.");
+        String word2 = input.nextLine();
 
-        return wordl;
+        System.out.println(recombine(word1,word2));
     }
-    /* to he implemented in part */
 
+    public static String recombine(String word1, String word2) {
+        String recWord1 = "";
+        String recWord2 = "";
+        String newWord = "";
+        if (!(word1.length() % 2 == 0)) {
+            recWord1 = word1.substring(0, (word1.length() / 2) + 1);
+        } else {
+            recWord1 = word1.substring(0, word1.length() / 2);
+        }
+        if (!(word2.length() % 2 == 0)) {
+            recWord2 = word2.substring((word2.length() / 2) + 1);
+        } else {
+            recWord2 = word2.substring(word2.length() / 2);
+        }
+        newWord = recWord1 + recWord2;
+        return newWord;
+    }
 
-    private String[] mixedWords(String[] words) {
-
+    public static String[] mixedWords(String[] strWords) {
+        for (String i : strWords) {
+            recombine(strWords[i],strWords[i+1]);
+        }
         return words;
     }
 
 }
-
-
-   /* to be implemented in part */
